@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-info fw-bold text"> Student List</h2>
+    <button class="btn btn-primary px-4" (click)="openForm()">
+      Add Student
+    </button>
+  </div>
+
+  <div class="table-responsive shadow-sm">
+    <table class="table table-hover table-striped align-middle text-center">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Course</th>
+          <th scope="col" style="width: 180px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of student_list">
+          <td class="fw-semibold">{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.course }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning me-2"
+                    (click)="editStudent(student)">
+               Edit
+            </button>
+            <button class="btn btn-sm btn-danger"
+                    (click)="deleteStudent(student.id)">
+               Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-student-form *ngIf="showForm"
+                    [editData]="editData"
+                    (formClose)="closeForm($event)">
+  </app-student-form>
+</div>
